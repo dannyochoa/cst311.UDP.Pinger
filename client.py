@@ -45,5 +45,4 @@ print('Min RTT time: {0:.6f}s'.format(minElapsed))
 print('Average RTT time: {0:.6f}s'.format(totalTime / numSuccess))
 print('Packet loss: {0:.2f}%'.format(((numPings - numSuccess)/numPings)*100)) 
 clientSocket.close()
-
-
+#sdf
