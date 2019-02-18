@@ -10,6 +10,7 @@ serverPort = 12000
 clientSocket = socket(AF_INET,SOCK_DGRAM)
 clientSocket.settimeout(1)
 clientSocket.connect((serverName, serverPort))
+numPings = 10
 totalTime = 0
 maxElapsed = 0
 minElapsed = 0
@@ -17,7 +18,7 @@ numSuccess = 0
 
 sentence = input('Input lowercase sentence:')
 
-for i in range(10):
+for i in range(numPings):
 	
 	start = time.time()
 	clientSocket.send(sentence.encode())
@@ -39,10 +40,10 @@ for i in range(10):
 			minElapsed = elapsed
 	except Exception:
 		print('REQUEST TIMED OUT\n')
-print('Max elapsed time: {0:.6f}s'.format(maxElapsed))
-print('Min elapsed time: {0:.6f}s'.format(minElapsed))
-print('Average elapsed time: {0:.6f}s'.format(totalTime / numSuccess))
-print('Packet loss: {0:.2f}%'.format(((10 - numSuccess)/10)*100)) 
+print('Max RTT time: {0:.6f}s'.format(maxElapsed))
+print('Min RTT time: {0:.6f}s'.format(minElapsed))
+print('Average RTT time: {0:.6f}s'.format(totalTime / numSuccess))
+print('Packet loss: {0:.2f}%'.format(((numPings - numSuccess)/numPings)*100)) 
 clientSocket.close()
 
 
