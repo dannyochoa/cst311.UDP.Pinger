@@ -2,7 +2,6 @@ from socket import *
 import time
 
 serverName = 'localhost'
-
 serverPort = 12000
 
 clientSocket = socket(AF_INET,SOCK_DGRAM)
@@ -13,14 +12,14 @@ totalTime = 0
 maxElapsed = 0
 minElapsed = 0
 numSuccess = 0
-estimatedRTT = 0.0004
-
+sequenceNum = 0
 sentence = input('Input lowercase sentence:')
 
 for i in range(numPings):
 	
 	start = time.time()
-	clientSocket.send(sentence.encode())
+	msg = str(sequenceNum) + "," + str(start) + "," + sentence 
+	clientSocket.send(msg.encode())
 	
 	print('Ping #{}'.format(i))
 	try:
@@ -29,14 +28,13 @@ for i in range(numPings):
 		numSuccess += 1
 		print('Message from server: ', modifiedSentence.decode())
 		elapsed = end - start
-		print('Elapsed time: {0:.6f}s'.format(elapsed))
-		estimatedRTT = (1 - 0.125) * estimatedRTT + 0.125 * elapsed
-		print('EstimatedRTT: {0:.6f}s\n'.format(estimatedRTT))
+		print('Elapsed time: {0:.6f}s\n'.format(elapsed))
 		totalTime += elapsed
 		if maxElapsed < elapsed:
 			maxElapsed = elapsed
 		if i == 1 or minElapsed > elapsed:
 			minElapsed = elapsed
+		sequenceNum = sequenceNum ^ 1
 	except Exception:
 		print('REQUEST TIMED OUT\n')
 print('Max RTT time: {0:.6f}s'.format(maxElapsed))
