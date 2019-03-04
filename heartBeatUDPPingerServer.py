@@ -42,6 +42,7 @@ while True:
 			continue
 		# otherwise, the server responds
 		serverSocket.sendto(msg[2],address)
+	#exeption catches the timeout. 
 	except Exception:
 		#if i == 0 client has not sent anything
 		if i!= 0:
