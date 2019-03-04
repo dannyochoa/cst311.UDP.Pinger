@@ -16,7 +16,7 @@ maxElapsed = 0
 minElapsed = 0
 numSuccess = 0
 sequenceNum = 0
-
+estimatedRTT = 0
 sentence = input('Input lowercase sentence:')
 
 for i in range(numPings):
@@ -26,14 +26,14 @@ for i in range(numPings):
 	msg = str(sequenceNum) + "," + str(start) + "," + sentence 
 	clientSocket.send(msg.encode())
 	
-	print('Ping #{}'.format(i))
+	print('Ping #{} time: {}'.format(i+1, start))
 	try:
 		modifiedSentence = clientSocket.recv(1024)
 		end = time.time()
 		numSuccess += 1
 		print('Message from server: ', modifiedSentence.decode())
 		elapsed = end - start
-		print('Elapsed time: {0:.6f}s\n'.format(elapsed))
+		print('Elapsed time: {0:.6f}s'.format(elapsed))
 		#used the first success as the initial estimatedRTT
 		if numSuccess == 1:
 			extimatedRTT = elapsed

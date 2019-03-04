@@ -23,7 +23,7 @@ for i in range(numPings):
 	start = time.time()
 	clientSocket.send(sentence.encode())
 	
-	print('Ping #{}'.format(i))
+	print('Ping #{} time: {}'.format(i+1, start))
 	try:
 		modifiedSentence = clientSocket.recv(1024)
 		end = time.time()

@@ -31,7 +31,7 @@ while True:
 			elapsedTime =float(msg[1]) - float(prevTime)
 			# if the elapsed time is >= 1 sec a packet lost occur last packet
 			if elapsedTime >= 1 :
-				print("Packet {} lost".format(i-1))
+				print("Packet {} lost".format(i))
 				clientLoss += 1
 		prevTime = float(msg[1])
 		i += 1
