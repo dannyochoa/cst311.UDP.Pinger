@@ -15,8 +15,8 @@ responds.
 - [X] FInd and print minimum and maximum RTT.
 - [X] Calculate and print average RTT.
 - [X] Calculate and print packet loss percentage.
-- [ ] Calculate the estimated RTT. Consider alpha = 0.125.
-- [ ] Program must be well documented.
+- [X] Calculate the estimated RTT. Consider alpha = 0.125.
+- [X] Program must be well documented.
 
 ## Example Walkthrough
 
