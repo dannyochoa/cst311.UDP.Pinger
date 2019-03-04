@@ -22,6 +22,7 @@ sentence = input('Input lowercase sentence:')
 for i in range(numPings):
 	
 	start = time.time()
+	#concatinating sequence number time sent and message 
 	msg = str(sequenceNum) + "," + str(start) + "," + sentence 
 	clientSocket.send(msg.encode())
 	
